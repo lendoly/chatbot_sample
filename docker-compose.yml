@@ -1,0 +1,28 @@
+services:
+  chatbot:
+    build:
+      context: ./chatbot_service
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./chatbot_service:/app
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend_service
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    # mount source for live editing, but keep installed modules inside container
+    volumes:
+      - ./frontend_service:/app
+      - /app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    depends_on:
+      - chatbot
+    restart: unless-stopped

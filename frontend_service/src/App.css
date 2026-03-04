@@ -1,0 +1,190 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* prevent page scroll */
+}
+
+.App {
+  width: 100%;
+  height: 100vh;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  background: #075e54;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+/* sidebar */
+.sidebar {
+  width: 150px;
+  background: #f5f5f5;
+  padding: 10px;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  overflow-y: auto;
+}
+
+.sidebar h2 {
+  font-size: 1rem;
+  margin-top: 0;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.error {
+  color: #d8000c;
+  background: #ffbaba;
+  padding: 5px 10px;
+  margin: 5px 10px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.sidebar li {
+  padding: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 4px;
+}
+
+.delete-session, .chat-delete-session {
+  background: #f8d7da;
+  border: 1px solid #f5c6cb;
+  color: #721c24;
+  font-weight: bold;
+  cursor: pointer;
+  margin-left: 8px;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.delete-session:hover, .chat-delete-session:hover {
+  background: #f5c6cb;
+  color: #491217;
+}
+
+.chat-delete-session {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+header {
+  background: #075e54;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+  font-size: 1.2rem;
+  position: relative; /* for absolute button */
+}
+
+.sidebar li:hover,
+.sidebar li.active {
+  background: #ddd;
+}
+
+.new-session {
+  margin-top: 10px;
+  width: 100%;
+  padding: 6px;
+  background: #075e54;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.new-session:hover {
+  background: #064e44;
+}
+
+/* layout adjustments to accommodate sidebar */
+.chat-container {
+  display: flex;
+  flex: 1;
+}
+
+.chat-window {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  background: #ece5dd;
+}
+
+/* ensure input stays fixed and window resizes properly on small screens */
+.input-area {
+  padding: 10px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+@media (max-width: 640px) {
+  .message {
+    max-width: 90%;
+  }
+}
+
+.message {
+  max-width: 80%;
+  margin-bottom: 10px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  line-height: 1.4;
+  word-wrap: break-word;
+}
+
+.message.user {
+  background: #dcf8c6;
+  align-self: flex-end;
+  border-bottom-right-radius: 0;
+}
+
+.message.bot {
+  background: #fff;
+  align-self: flex-end;
+  border-bottom-right-radius: 0;
+  text-align: right;
+}
+
+.input-area {
+  padding: 10px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+}
+
+input.prompt {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  margin-right: 10px;
+}
+
+button.send {
+  background: #075e54;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+button.send:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

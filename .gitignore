@@ -126,3 +126,15 @@ venv/
 
 # Cython debug symbols
 cython_debug/
+
+# React / frontend
+node_modules/
+build/
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
