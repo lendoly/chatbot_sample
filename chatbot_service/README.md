@@ -67,6 +67,7 @@ Tests all HTTP endpoints via FastAPI's `TestClient`. The DB engine and `services
 
 | Endpoint | What is tested |
 |---|---|
+| `POST /sessions` | Returns a `session_id`; valid UUID format; unique per call |
 | `GET /sessions` | Empty list with no data; returns existing session IDs; no duplicates |
 | `GET /sessions/{id}/messages` | Empty list for unknown session; returns all messages; correct shape (`sender`, `text`, `timestamp`); insertion order preserved; scoped to session |
 | `DELETE /sessions/{id}` | Returns `{"status": "ok", "session_id": "..."}` ; removes messages; removes from sessions list; safe on nonexistent ID; does not affect other sessions |

@@ -1,3 +1,4 @@
+import uuid
 from transformers import pipeline
 from sqlmodel import Session, select, delete
 from db import engine
@@ -9,6 +10,10 @@ pipe = pipeline(
     device_map="auto",
 )
 chat_histories = {}
+
+
+def create_session() -> str:
+    return str(uuid.uuid4())
 
 
 def get_sessions():

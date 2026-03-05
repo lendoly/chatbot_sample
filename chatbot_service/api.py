@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from models import ChatRequest
-from services import get_sessions, get_messages, generate_response, delete_session
+from services import create_session, get_sessions, get_messages, generate_response, delete_session
 
 app = FastAPI()
 
@@ -12,6 +12,11 @@ app.add_middleware(
     allow_headers=["*"],
     allow_credentials=True,
 )
+
+
+@app.post("/sessions")
+async def create_session_endpoint():
+    return {"session_id": create_session()}
 
 
 @app.get("/sessions")

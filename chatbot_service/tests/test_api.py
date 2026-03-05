@@ -1,3 +1,4 @@
+import uuid
 import pytest
 from unittest.mock import patch
 from fastapi.testclient import TestClient
@@ -10,6 +11,29 @@ from api import app
 def client():
     with TestClient(app) as c:
         yield c
+
+
+# ---------------------------------------------------------------------------
+# POST /sessions
+# ---------------------------------------------------------------------------
+
+def test_create_session_returns_200(client):
+    assert client.post("/sessions").status_code == 200
+
+
+def test_create_session_returns_session_id(client):
+    assert "session_id" in client.post("/sessions").json()
+
+
+def test_create_session_returns_valid_uuid(client):
+    session_id = client.post("/sessions").json()["session_id"]
+    uuid.UUID(session_id)  # raises ValueError if not a valid UUID
+
+
+def test_create_session_returns_unique_ids(client):
+    id1 = client.post("/sessions").json()["session_id"]
+    id2 = client.post("/sessions").json()["session_id"]
+    assert id1 != id2
 
 
 # ---------------------------------------------------------------------------
